@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "stepik_exercise_for_various_languages"
+version = "0.1.0"
+description = ""
+authors = ["Igor' Vlasov <igorkram777@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+selene = {version = "^1.0.2", allow-prereleases = true}
+pytest = "^6.2.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
