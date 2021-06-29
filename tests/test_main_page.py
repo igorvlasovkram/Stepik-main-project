@@ -1,4 +1,6 @@
-def test_guest_can_go_to_login_page(browser):
-    browser.get("http://selenium1py.pythonanywhere.com/")
+from stepik_main_project.page.main_page import MainPage
 
-    browser.find_element_by_css_selector("#login_link").click()
+
+def test_guest_can_go_to_login_page(browser):
+    page = MainPage(browser, 'http://selenium1py.pythonanywhere.com/')
+    page.go_to_login_page()
