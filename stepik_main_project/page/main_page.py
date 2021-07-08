@@ -1,6 +1,6 @@
 from stepik_main_project.page.base_page import BasePage
 from stepik_main_project.page.locators import MainPageLocators
-from stepik_main_project.page.login_page import LoginPage
+# from stepik_main_project.page.login_page import LoginPage
 
 
 class MainPage(BasePage):
