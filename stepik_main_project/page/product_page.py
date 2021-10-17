@@ -1,5 +1,3 @@
-from selenium.webdriver.common.by import By
-
 from stepik_main_project.page.base_page import BasePage
 from stepik_main_project.page.locators import ProductPageLocators
 
@@ -24,7 +22,7 @@ class ProductPage(BasePage):
             *ProductPageLocators.ELEMENT_IN_BASKET_WITH_COST
         ).text
 
-        assert product_name in product_name_in_basket, \
+        assert product_name == product_name_in_basket, \
             'Product name is not equal to product name in basket'
-        assert product_cost in basket_cost, \
+        assert product_cost == basket_cost, \
             'Basket cost is not equal to product cost'

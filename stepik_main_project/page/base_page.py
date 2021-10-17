@@ -1,6 +1,7 @@
 import math
 
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.common.exceptions import\
+    (NoSuchElementException, NoAlertPresentException)
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
