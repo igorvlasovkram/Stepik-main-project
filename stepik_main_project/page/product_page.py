@@ -26,3 +26,12 @@ class ProductPage(BasePage):
             'Product name is not equal to product name in basket'
         assert product_cost == basket_cost, \
             'Basket cost is not equal to product cost'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present \
+            (*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_not_be_success_message_already(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"

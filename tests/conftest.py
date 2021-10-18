@@ -10,7 +10,7 @@ def pytest_addoption(parser):
 @pytest.fixture(scope='function')
 def browser(request):
     options = Options()
-    options.headless = True
+    # options.headless = True
     custom_language = request.config.getoption('language')
     options.add_experimental_option('prefs',
                                     {'intl.accept_languages': custom_language}
