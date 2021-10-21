@@ -2,11 +2,13 @@ import math
 
 from selenium.common.exceptions import \
     (NoSuchElementException, NoAlertPresentException, TimeoutException)
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from stepik_main_project.page.locators import BasePageLocators
+from stepik_main_project.page.locators import BasePageLocators, BasketPageLocators
 
 
 class BasePage:
@@ -55,9 +57,6 @@ class BasePage:
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), \
             "Login link is not presented"
 
-    def should_be_on_login_page(self):
-        assert self.is_login_page(), 'You are not on login page ('
-
     def is_not_element_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout) \
@@ -73,3 +72,18 @@ class BasePage:
         except TimeoutException:
             return False
         return True
+
+    def go_to_basket(self, timeout=4):
+        WebDriverWait(self.browser, timeout) \
+            .until(EC.visibility_of_element_located
+                   (BasePageLocators.VIEW_BASKET)).click()
+
+    def should_has_no_goods_in_basket(self, timeout=4):
+        WebDriverWait(self.browser, timeout) \
+            .until_not(EC.visibility_of_element_located
+                       (BasketPageLocators.ITEMS))
+
+    def should_has_text_about_empty_basket(self, timeout=4):
+        WebDriverWait(self.browser, timeout) \
+            .until(EC.text_to_be_present_in_element
+                   (BasketPageLocators.MESSAGE_ABOUT_EMPTY, 'empty'))

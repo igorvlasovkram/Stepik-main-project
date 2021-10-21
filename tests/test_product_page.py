@@ -1,5 +1,6 @@
 import pytest
 
+from stepik_main_project.page.login_page import LoginPage
 from stepik_main_project.page.product_page import ProductPage
 
 
@@ -78,4 +79,17 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 
     page.go_to_login_page()
 
-    page.should_be_on_login_page()
+    login_page = LoginPage(browser, browser.current_url)
+    login_page.should_be_on_login_page()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    page = ProductPage(
+        browser,
+        'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/')
+    page.open()
+
+    page.go_to_basket()
+
+    page.should_has_no_goods_in_basket()
+    page.should_has_text_about_empty_basket()
