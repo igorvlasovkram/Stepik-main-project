@@ -1,10 +1,8 @@
 import math
 
 from selenium.common.exceptions import \
-    (NoSuchElementException, NoAlertPresentException, TimeoutException)
-from selenium.webdriver.common.by import By
+    (NoAlertPresentException, TimeoutException)
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -87,3 +85,7 @@ class BasePage:
         WebDriverWait(self.browser, timeout) \
             .until(EC.text_to_be_present_in_element
                    (BasketPageLocators.MESSAGE_ABOUT_EMPTY, 'empty'))
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), \
+            "User icon is not presented, probably unauthorised user"

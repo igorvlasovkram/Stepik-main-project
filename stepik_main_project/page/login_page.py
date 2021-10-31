@@ -22,3 +22,14 @@ class LoginPage(BasePage):
 
     def should_be_on_login_page(self):
         assert self.is_login_page(), 'You are not on login page ('
+
+    def register_new_user(self, email, password):
+        self.browser.find_element(*LoginPageLocators.REGISTRATION_EMAIL) \
+            .send_keys(email)
+        self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD) \
+            .send_keys(password)
+        self.browser.find_element(
+            *LoginPageLocators.CONFIRM_REGISTRATION_PASSWORD
+        ).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON) \
+            .click()
