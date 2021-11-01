@@ -4,9 +4,7 @@ from stepik_main_project.page.locators import ProductPageLocators
 
 class ProductPage(BasePage):
     def add_to_basket(self):
-        self.browser.find_element(
-            *ProductPageLocators.BASKET
-        ).click()
+        self.browser.find_element(*ProductPageLocators.BASKET).click()
 
     def should_be_added_to_busket(self):
         product_name = self.browser.find_element(
